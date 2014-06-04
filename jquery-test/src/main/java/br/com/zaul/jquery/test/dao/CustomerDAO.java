@@ -17,6 +17,7 @@ public class CustomerDAO {
 		customers.add(new Customer(3, "Everton", "Ribeiro", 25));
 		customers.add(new Customer(4, "Bruno", "Rodrigo", 28));
 		customers.add(new Customer(5, "Julio", "Batista", 33));
+		customers.add(new Customer(6, "Lucas", "Silva", 21));
 	}
 
 	public List<Customer> findAll() {

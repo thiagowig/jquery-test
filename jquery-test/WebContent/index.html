@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 	</head>
 	
-	
 	<body>
 		<div>
 			<h1>JQuery with Bootstrap and JAX-RS test</h1>
@@ -47,7 +46,7 @@
 		});
 
 		$("#myButton").click(function() {
-	        var artistURL = "http://localhost:8080/jquery-test/rest/customer";
+	        var artistURL = "http://localhost:8080/jquery-test/rest/customer/";
 	        var returnData = "";
 	        $.ajax({
 	            type: "GET",
@@ -56,16 +55,13 @@
 	            error: function(request, status, error) { alert(request) },
 	            success: function(data) {
 	                $("div#myOutput").html(" ");
-	                returnData = "<table style='font-size:8pt;'><tr><th>Nome</th><th>Age</th></tr>";
-	                for (prop in data) {
-	                    if (!data.hasOwnProperty(prop)) { continue; }
-	                    if (data[prop] != null) {
-	                        for (var i = 0; i < data[prop].length; i++) {
-	                            returnData += "<tr><td>" + data[prop][i]["firsName"] 
-	                                       + " " + data[prop][i]["lastName"] + "</td><td align='right'>"
-	                                       + data[prop][i]["age"] + "</td></tr>";
-	                        }
-	                    }
+	                returnData = 'table class="table"><tr><th>Nome</th><th>Age</th></tr>';
+	                for (each in data) {		                
+                         returnData += "<tr><td>" + data[each].firsName 
+                                    + " " + data[each].lastName + "</td><td align='right'>"
+                                    + data[each].age + "</td></tr>";
+	                       
+	                   
 	                }
 	                returnData = returnData + "</table>";
 	                $("div#myOutput").html(returnData);
@@ -74,6 +70,9 @@
 	        return (false);
 	    });
 
+		$("#myClearButton").click(function() {
+			$("div#myOutput").html("");
+		});
 	</script>
 
 	
