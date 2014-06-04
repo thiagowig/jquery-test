@@ -43,6 +43,8 @@
 						$('.customerID').append(data.id);
 						$('.customerName').append(data.age);
 					});
+
+			
 		});
 
 		$("#myButton").click(function() {
@@ -73,6 +75,9 @@
 		$("#myClearButton").click(function() {
 			$("div#myOutput").html("");
 		});
+
+		$(".customerID").hide();
+		$('.customerName').css("color", "red");
 	</script>
 
 	
