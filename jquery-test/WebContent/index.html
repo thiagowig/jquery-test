@@ -11,10 +11,21 @@
 	<body>
 		<div>
 			<h1>JQuery with Bootstrap and JAX-RS test</h1>
+			
+			<h3>Adding a click behaviour</h3>
 			<a href="#">JQuery</a>
 		
+			<h3>Appending a data with ajax</h3>
             <p class="customerID">The ID is </p>
             <p class="customerName">The first name is </p>
+            
+        </div>
+        
+        <div>
+            <h3>Populating a table with REST data</h3>
+        	<p><div id="myOutput">Output Goes Here</div><p>
+			<p><input id="myButton" value="Get Artist" type="submit" /></p>
+			<p><input id="myClearButton" value="Clear Artist" type="submit" /></p>
         </div>
 	</body>
 	
@@ -28,12 +39,40 @@
 				});
 
 			$.ajax({
-				url: "http://127.0.0.1:8080/jquery-test/rest/customer/1"
+				url: "http://localhost:8080/jquery-test/rest/customer/4"
 				}).then(function(data) {
 						$('.customerID').append(data.id);
-						$('.customerName').append(data.firsName);
+						$('.customerName').append(data.age);
 					});
 		});
+
+		$("#myButton").click(function() {
+	        var artistURL = "http://localhost:8080/jquery-test/rest/customer";
+	        var returnData = "";
+	        $.ajax({
+	            type: "GET",
+	            dataType: "json",
+	            url: artistURL,
+	            error: function(request, status, error) { alert(request) },
+	            success: function(data) {
+	                $("div#myOutput").html(" ");
+	                returnData = "<table style='font-size:8pt;'><tr><th>Nome</th><th>Age</th></tr>";
+	                for (prop in data) {
+	                    if (!data.hasOwnProperty(prop)) { continue; }
+	                    if (data[prop] != null) {
+	                        for (var i = 0; i < data[prop].length; i++) {
+	                            returnData += "<tr><td>" + data[prop][i]["firsName"] 
+	                                       + " " + data[prop][i]["lastName"] + "</td><td align='right'>"
+	                                       + data[prop][i]["age"] + "</td></tr>";
+	                        }
+	                    }
+	                }
+	                returnData = returnData + "</table>";
+	                $("div#myOutput").html(returnData);
+	            }
+	        });
+	        return (false);
+	    });
 
 	</script>
 
