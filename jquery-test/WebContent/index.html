@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>JQuery with Bootstrap and JAX-RS test</title>
+		
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	</head>
+	
+	
+	<body>
+		<div>
+			<h1>JQuery with Bootstrap and JAX-RS test</h1>
+			<a href="#">JQuery</a>
+		
+            <p class="customerID">The ID is </p>
+            <p class="customerName">The first name is </p>
+        </div>
+	</body>
+	
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("a").click(function(event) {
+					alert("Thank you for click me")
+					event.preventDefault();
+				});
+
+			$.ajax({
+				url: "http://127.0.0.1:8080/jquery-test/rest/customer/1"
+				}).then(function(data) {
+						$('.customerID').append(data.id);
+						$('.customerName').append(data.firsName);
+					});
+		});
+
+	</script>
+
+	
+</html>
